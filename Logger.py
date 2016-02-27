@@ -15,4 +15,4 @@ class Logger(object):
         print self.format("INFO", tag, message)
 
     def format(self, level, tag, message):
-        return level + " " + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " " + tag + message
+        return level + " " + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " " + tag + " " + message
