@@ -30,5 +30,5 @@ def checkDB(fun):
     def _fun(self, *args):
         if self.db is None:
             self.db = DbHelper.DbHelper()
-        fun(self, *args)
+        return fun(self, *args)
     return _fun
