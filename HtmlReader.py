@@ -4,7 +4,7 @@ from Logger import Logger
 
 
 class HtmlReader(object):
-    TAG = "HtmlParser"
+    TAG = "HtmlReader"
     URL_BASE = "https://en.wikipedia.org"
 
     def __init__(self, url):
