@@ -2,7 +2,7 @@
     deal with basic CURD for words"
 """
 from DbHelper import DbHelper
-from Config import Config
+
 
 class EntryManager:
     TABLE_NAME = "entry"
@@ -21,7 +21,7 @@ class EntryManager:
         self.db.execute(sql)
 
     def add(self, entry):
-        sql = "INSERT INTO `" + Config.DB_NAME + "`.`" + self.TABLE_NAME + "` VALUES ('" \
+        sql = "INSERT INTO `" + self.TABLE_NAME + "` VALUES ('" \
               + entry.url + "', '" + entry.title \
               + "', 1) ON DUPLICATE KEY UPDATE " + self.FIELD_COUNT + " = " + self.FIELD_COUNT + " + 1;"
         self.db.execute(sql)

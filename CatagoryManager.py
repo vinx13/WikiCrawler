@@ -16,10 +16,11 @@ class CatagoryManager(object):
         self.db.execute(sql)
 
     def add(self, entry):
-        sql = "INSERT INTO `" + self.TABLE_NAME + "` VALUES ('" \
-              + entry.title + "', 1) " \
-              + "ON DUPLICATE KEY UPDATE " + self.FIELD_COUNT + " = " + self.FIELD_COUNT + " + 1;"
-        self.db.execute(sql)
+        for title in entry.catagories:
+            sql = "INSERT INTO `" + self.TABLE_NAME + "` VALUES ('" \
+                  + title + "', 1) " \
+                  + "ON DUPLICATE KEY UPDATE " + self.FIELD_COUNT + " = " + self.FIELD_COUNT + " + 1;"
+            self.db.execute(sql)
 
     def clear(self):
         sql = "DELETE FROM " + self.TABLE_NAME + ";"
