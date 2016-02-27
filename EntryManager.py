@@ -37,5 +37,5 @@ class EntryManager:
     def contains(self, url):
         sql = "SELECT * FROM `" + self.TABLE_NAME + "` WHERE " + self.FIELD_URL + " = '" + url + "';"
         self.db.execute(sql)
-        rows = self.db.execute(sql)
+        rows = self.db.getResult()
         return rows is not None
