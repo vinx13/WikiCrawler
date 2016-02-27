@@ -1,5 +1,6 @@
-import sqlite3
+import MySQLdb
 
+from Config import Config
 from tools import singleton
 
 
@@ -8,21 +9,23 @@ class DbHelper(object):
     """
         Encapsulate basic operations of database
     """
-    DB_FILENAME = "../res/data.db"
 
     def __init__(self):
-        self.conn = sqlite3.connect(self.DB_FILENAME)
+        self.conn = MySQLdb.connect(
+            host=Config.HOST,
+            port=Config.PORT,
+            user=Config.USER,
+            passwd=Config.PASSWORD,
+            db=Config.DB_NAME
+        )
+        self.conn.autocommit(True)
         self.cursor = self.conn.cursor()
-
     def __del__(self):
-        self.commit()
+        self.cursor.close()
         self.conn.close()
 
     def execute(self, sql):
         self.cursor.execute(sql)
-
-    def commit(self):
-        self.conn.commit()
 
     def getResult(self, count=0):
         """
@@ -31,3 +34,4 @@ class DbHelper(object):
         if count == 0:
             return self.cursor.fetchall()
         return self.cursor.fetchmany(count)
+DbHelper()
