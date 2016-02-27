@@ -27,4 +27,4 @@ class HtmlParser(object):
         if catagories is None:
             catagories = []
 
-        return Entry(title, self.url, children, catagories)
+        return Entry(self.url, title, children, catagories)
