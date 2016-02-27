@@ -2,7 +2,7 @@ from DbHelper import DbHelper
 
 
 class CatagoryManager(object):
-    TABLE_NAME = "cactagory"
+    TABLE_NAME = "catagory"
     FIELD_TITLE = "title"
     FIELD_COUNT = "count"
 
