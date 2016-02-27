@@ -1,5 +1,5 @@
 from DbHelper import DbHelper
-from tools import singleton
+from tools import singleton, checkDB
 
 
 @singleton
@@ -15,10 +15,12 @@ class QueueProxy(object):
               + self.FIELD_ID + " INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (`" + self.FIELD_ID + "`));"
         self.db.execute(sql)
 
+    @checkDB
     def push(self, url):
         sql = "INSERT INTO " + self.TABLE_NAME + " (" + self.FIELD_URL + ") VALUES ('" + url + "');"
         self.db.execute(sql)
 
+    @checkDB
     def pop(self):
         sql = "SELECT " + self.FIELD_URL + ", " + self.FIELD_ID + " FROM " + self.TABLE_NAME + " ORDER BY " + self.FIELD_ID + " LIMIT 1;"
         self.db.execute(sql)

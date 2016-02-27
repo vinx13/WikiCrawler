@@ -1,3 +1,5 @@
+import DbHelper
+
 def singleton(_class):
     """
         a decorator that is used to implement singleton patten;
@@ -22,3 +24,11 @@ def enum(*sequential):
     """
     enums = dict(zip(sequential, range(len(sequential))))
     return type('Enum', (), enums)
+
+
+def checkDB(fun):
+    def _fun(self, *args):
+        if self.db is None:
+            self.db = DbHelper.DbHelper()
+        fun(self, *args)
+    return _fun

@@ -2,6 +2,7 @@
     deal with basic CURD for words"
 """
 from DbHelper import DbHelper
+from tools import checkDB
 
 
 class EntryManager:
@@ -20,20 +21,24 @@ class EntryManager:
 
         self.db.execute(sql)
 
+    @checkDB
     def add(self, entry):
         sql = "INSERT INTO `" + self.TABLE_NAME + "` VALUES ('" \
               + entry.url + "', '" + entry.title + "', 1);"
         self.db.execute(sql)
 
+    @checkDB
     def update(self, url):
         sql = "UPDATE " + self.TABLE_NAME + " SET " \
               + self.FIELD_COUNT + " = " + self.FIELD_COUNT + " + 1 WHERE " + self.FIELD_URL + " = '" + url + "';"
         self.db.execute(sql)
 
+    @checkDB
     def clear(self):
         sql = "DELETE FROM " + self.TABLE_NAME + ";"
         self.db.execute(sql)
 
+    @checkDB
     def contains(self, url):
         sql = "SELECT * FROM `" + self.TABLE_NAME + "` WHERE " + self.FIELD_URL + " = '" + url + "';"
         self.db.execute(sql)
