@@ -22,8 +22,12 @@ class EntryManager:
 
     def add(self, entry):
         sql = "INSERT INTO `" + self.TABLE_NAME + "` VALUES ('" \
-              + entry.url + "', '" + entry.title \
-              + "', 1) ON DUPLICATE KEY UPDATE " + self.FIELD_COUNT + " = " + self.FIELD_COUNT + " + 1;"
+              + entry.url + "', '" + entry.title + "', 1);"
+        self.db.execute(sql)
+
+    def update(self, url):
+        sql = "UPDATE " + self.TABLE_NAME + " SET " \
+              + self.FIELD_COUNT + " = " + self.FIELD_COUNT + " + 1 WHERE " + self.FIELD_URL + " = '" + url + "';"
         self.db.execute(sql)
 
     def clear(self):
@@ -34,4 +38,4 @@ class EntryManager:
         sql = "SELECT * FROM `" + self.TABLE_NAME + "` WHERE " + self.FIELD_URL + " = '" + url + "';"
         self.db.execute(sql)
         rows = self.db.execute(sql)
-        return rows is None
+        return rows is not None

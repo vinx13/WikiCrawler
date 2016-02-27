@@ -1,4 +1,3 @@
-from Config import Config
 from DbHelper import DbHelper
 from tools import singleton
 
@@ -11,7 +10,7 @@ class QueueProxy(object):
 
     def __init__(self):
         self.db = DbHelper()
-        sql = "CREATE TABLE IF NOT EXISTS `" + Config.DB_NAME + "`.`" + self.TABLE_NAME \
+        sql = "CREATE TABLE IF NOT EXISTS `" + self.TABLE_NAME \
               + "` (" + self.FIELD_URL + " TEXT NOT NULL, " \
               + self.FIELD_ID + " INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (`" + self.FIELD_ID + "`));"
         self.db.execute(sql)

@@ -22,12 +22,14 @@ class WikiCrawler(object):
             try:
                 sleep(1)
                 url = self.queue.pop()
-                html = HtmlReader(url).read()
-                entry = HtmlParser(html, url).parse()
-                for child in entry.children:
-                    if not self.entryMgr.contains(child):
+                if self.entryMgr.contains(url):
+                    self.entryMgr.update(url)
+                else:
+                    html = HtmlReader(url).read()
+                    entry = HtmlParser(html, url).parse()
+                    self.entryMgr.add(entry)
+                    self.catagoryMgr.add(entry)
+                    for child in entry.children:
                         self.queue.push(child)
-                self.entryMgr.add(entry)
-                self.catagoryMgr.add(entry)
             except Exception, e:
                 self.logger.e(self.TAG, e.message)
