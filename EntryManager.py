@@ -29,3 +29,9 @@ class EntryManager:
     def clear(self):
         sql = "DELETE FROM " + self.TABLE_NAME + ";"
         self.db.execute(sql)
+
+    def contains(self, url):
+        sql = "SELECT * FROM `" + self.TABLE_NAME + "` WHERE " + self.FIELD_URL + " = '" + url + "';"
+        self.db.execute(sql)
+        rows = self.db.execute(sql)
+        return rows is None
