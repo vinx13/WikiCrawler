@@ -2,7 +2,7 @@ import urllib2
 
 
 class HtmlReader(object):
-    URL_BASE = "https://en.wikipedia.org/"
+    URL_BASE = "https://en.wikipedia.org"
 
     def __init__(self, url):
         self.url = self.URL_BASE + url
