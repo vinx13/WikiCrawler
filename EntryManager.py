@@ -38,4 +38,4 @@ class EntryManager:
         sql = "SELECT * FROM `" + self.TABLE_NAME + "` WHERE " + self.FIELD_URL + " = '" + url + "';"
         self.db.execute(sql)
         rows = self.db.getResult()
-        return rows is not None
+        return len(rows) > 0

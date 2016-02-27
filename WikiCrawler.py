@@ -32,4 +32,4 @@ class WikiCrawler(object):
                     for child in entry.children:
                         self.queue.push(child)
             except Exception, e:
-                self.logger.e(self.TAG, e.message)
+                self.logger.e(self.TAG, str(e))
